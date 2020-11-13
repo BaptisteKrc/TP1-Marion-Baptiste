@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-//Constructeur de Produit
+// Constructeur
 Produit::Produit(std::string titre, std::string description,int quantite, float prix) 
 				: m_titre(titre), 
 				m_description(description), 
@@ -10,7 +10,7 @@ Produit::Produit(std::string titre, std::string description,int quantite, float 
 				m_prixU(prix) {
 }
 
-//getters classique
+// Getters
 std::string Produit::getTitre() const{
 	return m_titre;
 }
@@ -27,12 +27,12 @@ float Produit::getPrixU() const{
 	return m_prixU;
 }
 
-//setters
+// Setters
 void Produit::setQuantite(int quantite){
 	m_quantite = quantite;
 }
 
-//Surcharge de l'opérateur << afin d'afficher un produit
+//Surcharge de l'opérateur (afin d'afficher un produit)
 std::ostream& operator << (std::ostream& output, Produit& obj){
 	output << obj.getTitre() << "	" << obj.getDescription() << "    (" << obj.getQuantite() << ")	 " 
 		   << obj.getPrixU() << " €" << std::endl;
