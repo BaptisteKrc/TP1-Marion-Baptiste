@@ -1,3 +1,5 @@
+//produit.h
+
 #ifndef _PRODUIT_H
 #define _PRODUIT_H
 
