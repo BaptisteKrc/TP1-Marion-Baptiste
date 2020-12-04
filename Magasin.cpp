@@ -1,3 +1,5 @@
+//Magasin.cpp
+
 #include <iostream>
 #include <vector>
 
