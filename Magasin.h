@@ -1,3 +1,5 @@
+//magasin.h
+
 #ifndef _MAGASIN_H
 #define _MAGASIN_H
 #include "Produit.h"
