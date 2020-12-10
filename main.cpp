@@ -1,9 +1,9 @@
 //main.cpp
 
 # include  < iostream >
-# inclure  " Magasin.h "
-# inclure  " Produit.h "
-# inclure  < vecteur >
+# include  " Magasin.h "
+# include  " Produit.h "
+# include  < vecteur >
 
 int  main () {
 
