@@ -74,9 +74,9 @@ void displayAccueil() {
 //Affichage du menu principal
 void displayMenu(){
     system("clear");
-    cout << ANSI_GREEN << "1 - Gestion des stocks" << ANSI_RESET << endl;
-    cout << ANSI_BLUE << "2 - Gestion des clients" << ANSI_RESET << endl;
-    cout << ANSI_RED << "3 - Gestion des commandes" << ANSI_RESET << endl;
+    cout << ANSI_GREEN << "1 - Menu stocks" << ANSI_RESET << endl;
+    cout << ANSI_BLUE << "2 - Menu clients" << ANSI_RESET << endl;
+    cout << ANSI_RED << "3 - Menu commandes" << ANSI_RESET << endl;
     cout << ANSI_CYAN << "4 - Retour à l'accueil" << ANSI_RESET  << endl;
     Box();
 }
