@@ -51,9 +51,10 @@ int Commande::getNumero(){
 
 double Commande::getPrixTotal() {
     double prixTotal = m_produits.at(0)->getPrixUnitaire() * m_produits.at(0)->getQuantite();
+    double prixInt=0;
     for (int i = 1; i < m_produits.size(); ++i) {
-        prixTotal = m_produits.at(i)->getPrixUnitaire() * m_produits.at(i)->getQuantite();
-	prixTotal = prixTotal+prixTotal;
+        prixInt = m_produits.at(i)->getPrixUnitaire() * m_produits.at(i)->getQuantite();
+		prixTotal = prixTotal+prixInt;
     }
     return prixTotal;
 }
@@ -87,5 +88,3 @@ ostream&operator<< (ostream&output,Commande commande){
     output << table;
 	return output;
 }
-
-
