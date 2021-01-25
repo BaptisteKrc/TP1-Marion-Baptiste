@@ -96,7 +96,7 @@ void Magasin::displayProducts() {
         string quantite = to_string(getProduits().at(i)->getQuantite());
 
         stringstream stream;
-        stream << fixed << setprecision(2) << "$ " << getProduits().at(i)->getPrixUnitaire();
+        stream << fixed << setprecision(2) << "EU " << getProduits().at(i)->getPrixUnitaire();
         string prix = stream.str();
 
         table += {nom, description, quantite, prix};
@@ -126,7 +126,7 @@ void Magasin::displayProduct(string name) {
             string quantite = to_string(m_produits.at(i)->getQuantite());
 
             stringstream stream;
-            stream << fixed << setprecision(2) << "$ " << m_produits.at(i)->getPrixUnitaire();
+            stream << fixed << setprecision(2) << "EU " << m_produits.at(i)->getPrixUnitaire();
             string prix = stream.str();
 
             table += {nom, description, quantite, prix};
