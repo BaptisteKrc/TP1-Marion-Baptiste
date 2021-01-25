@@ -139,7 +139,7 @@ void initialisation_store(Magasin* shop){
     Produit* p4 = new Produit("PS5", "Console de jeu Sony", 14, 599.99);
     Produit* p2 = new Produit("Switch", "Console de jeu Nintendo", 30, 299.99);
     Produit* p5 = new Produit("3DS", "Console de jeu Nintendo", 20, 299.99);
-	Produit* p6 = new Produit("PC", "Ordinateur portable", 10, 799.90);
+    Produit* p6 = new Produit("PC", "Ordinateur portable", 10, 799.90);
 
     shop->addProduit(p);
     shop->addProduit(p2);
