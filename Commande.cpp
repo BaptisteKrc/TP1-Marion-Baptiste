@@ -53,6 +53,7 @@ double Commande::getPrixTotal() {
     double prixTotal = m_produits.at(0)->getPrixUnitaire() * m_produits.at(0)->getQuantite();
     for (int i = 1; i < m_produits.size(); ++i) {
         prixTotal = m_produits.at(i)->getPrixUnitaire() * m_produits.at(i)->getQuantite();
+	prixTotal = prixTotal+prixTotal;
     }
     return prixTotal;
 }
@@ -69,7 +70,7 @@ ostream&operator<< (ostream&output,Commande commande){
         string quantite = to_string(commande.getProduits().at(i)->getQuantite());
 
         stringstream stream;
-        stream << fixed << setprecision(2) << "$ " << commande.getProduits().at(i)->getPrixUnitaire();
+        stream << fixed << setprecision(2) << "EU " << commande.getProduits().at(i)->getPrixUnitaire();
         string prix = stream.str();
 
         table += {nom, description, quantite, prix};
@@ -81,7 +82,7 @@ ostream&operator<< (ostream&output,Commande commande){
 
     table.sort(true);
     table.addBottomLine("Statut de la commande : "+ commande.getStatut());
-    table.addBottomLine("TOTAL : $"+ prix);
+    table.addBottomLine("TOTAL : EU"+ prix);
 
     output << table;
 	return output;
