@@ -59,7 +59,7 @@ ostream&operator<< (ostream&output, Client client){
         string quantite = to_string(client.getPanier().at(i)->getQuantite());
 
         stringstream stream;
-        stream << fixed << setprecision(2) << "$ " << client.getPanier().at(i)->getPrixUnitaire();
+        stream << fixed << setprecision(2) << "EU " << client.getPanier().at(i)->getPrixUnitaire();
         string prix = stream.str();
 
         table += {nom, description, quantite, prix};
