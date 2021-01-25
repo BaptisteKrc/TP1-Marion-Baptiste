@@ -160,9 +160,13 @@ void initialisation_store(Magasin* shop){
     
     Commande* co = new Commande(client, client->getPanier(), "En cours de traitement", shop->generateOrderID());
     Commande* co2 = new Commande(client2, client->getPanier(), "En cours de traitement", shop->generateOrderID());
+    Commande* co3 = new Commande(client3, client->getPanier(), "En cours de traitement", shop->generateOrderID());
+    Commande* co4 = new Commande(client3, client->getPanier(), "En cours de traitement", shop->generateOrderID());
 
     shop->addCommande(co);
     shop->addCommande(co2);
+    shop->addCommande(co3);
+    shop->addCommande(co4);
 }
 
 
