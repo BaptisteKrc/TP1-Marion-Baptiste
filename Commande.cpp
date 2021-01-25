@@ -82,7 +82,7 @@ ostream&operator<< (ostream&output,Commande commande){
 
     table.sort(true);
     table.addBottomLine("Statut de la commande : "+ commande.getStatut());
-    table.addBottomLine("TOTAL : EU"+ prix);
+    table.addBottomLine("TOTAL : EU "+ prix);
 
     output << table;
 	return output;
