@@ -74,9 +74,9 @@ void displayAccueil() {
 //Affichage du menu principal
 void displayMenu(){
     system("clear");
-    cout << ANSI_GREEN << "1 - Menu stocks" << ANSI_RESET << endl;
-    cout << ANSI_BLUE << "2 - Menu clients" << ANSI_RESET << endl;
-    cout << ANSI_RED << "3 - Menu commandes" << ANSI_RESET << endl;
+    cout << ANSI_GREEN << "1 - Gestion des stocks" << ANSI_RESET << endl;
+    cout << ANSI_BLUE << "2 - Gestions des clients" << ANSI_RESET << endl;
+    cout << ANSI_RED << "3 - Gestions des commandes" << ANSI_RESET << endl;
     cout << ANSI_CYAN << "4 - Retour à l'accueil" << ANSI_RESET  << endl;
     Box();
 }
@@ -161,7 +161,7 @@ void initialisation_store(Magasin* shop){
     Commande* co = new Commande(client, client->getPanier(), "En cours de traitement", shop->generateOrderID());
     Commande* co2 = new Commande(client2, client->getPanier(), "En cours de traitement", shop->generateOrderID());
     Commande* co3 = new Commande(client3, client->getPanier(), "En cours de traitement", shop->generateOrderID());
-    Commande* co4 = new Commande(client3, client->getPanier(), "En cours de traitement", shop->generateOrderID());
+    Commande* co4 = new Commande(client4, client->getPanier(), "En cours de traitement", shop->generateOrderID());
 
     shop->addCommande(co);
     shop->addCommande(co2);
