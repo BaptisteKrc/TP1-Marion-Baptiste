@@ -7,7 +7,7 @@
 #include <iomanip>
 
 using namespace  std;
-
+//Constructeur
 Client::Client(int id, string nom, string prenom, vector<Produit*> panier){
 	this->m_id = id;
     this->m_nom = nom;
