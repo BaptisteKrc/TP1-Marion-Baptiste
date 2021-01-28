@@ -23,13 +23,13 @@ class Client
 		void ajouterProduit(Produit* p);
 		void viderPanier();
 		void augmenterQuantite(Produit* p, int quantite);
-        void supprimerProduit(Produit* p);
+                void supprimerProduit(Produit* p);
 		friend ostream& operator <<(ostream &output, Client client);
 
 
 
 	private :
-        int m_id;
+        	int m_id;
 		string m_nom;
 		string m_prenom ;
 		vector<Produit*> m_panier;
