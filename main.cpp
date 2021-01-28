@@ -2,7 +2,7 @@
 #define ANSI_RED   "\033[0;91m"
 #define ANSI_RESET "\033[0;0m"
 #define ANSI_CYAN "\033[0;36m"
-#define ANSI_BLUE "\033[34m"
+#define ANSI_YELL "\u001b[33m"
 
 #define SLEEP_DELAY 2
 
@@ -74,9 +74,9 @@ void displayAccueil() {
 //Affichage du menu principal
 void displayMenu(){
     system("clear");
-    cout << ANSI_GREEN << "1 - Gestion des stocks" << ANSI_RESET << endl;
-    cout << ANSI_BLUE << "2 - Gestions des clients" << ANSI_RESET << endl;
-    cout << ANSI_RED << "3 - Gestions des commandes" << ANSI_RESET << endl;
+    cout << ANSI_GREEN << "1 - Menu Stocks" << ANSI_RESET << endl;
+    cout << ANSI_YELL << "2 - Menu Clients" << ANSI_RESET << endl;
+    cout << ANSI_RED << "3 - Menu commandes" << ANSI_RESET << endl;
     cout << ANSI_CYAN << "4 - Retour à l'accueil" << ANSI_RESET  << endl;
     Box();
 }
@@ -84,10 +84,10 @@ void displayMenu(){
 //Affichage menu client
 void displayMenuClient() {
     system("clear");
-    cout << ANSI_BLUE << "1 - Ajouter un client"<< ANSI_RESET << endl;
-    cout << ANSI_BLUE << "2 - Afficher la liste des clients"<< ANSI_RESET << endl;
-    cout << ANSI_BLUE << "3 - Afficher un client grâce à son ID"<< ANSI_RESET << endl;
-    cout << ANSI_BLUE << "4 - Afficher un client grâce à son nom et son prénom"<< ANSI_RESET << endl;
+    cout << ANSI_YELL << "1 - Ajouter un client"<< ANSI_RESET << endl;
+    cout << ANSI_YELL << "2 - Afficher la liste des clients"<< ANSI_RESET << endl;
+    cout << ANSI_YELL << "3 - Afficher un client grâce à son ID"<< ANSI_RESET << endl;
+    cout << ANSI_YELL << "4 - Afficher un client grâce à son nom et son prénom"<< ANSI_RESET << endl;
     cout << ANSI_CYAN << "5 - Retour au menu principal"<< ANSI_RESET << endl;
     Box();
 }
@@ -101,7 +101,11 @@ void displayMenuCommande() {
     cout<< ANSI_RED << "4 - Afficher une commande grâce à son ID"<< ANSI_RESET << endl;
     cout<< ANSI_RED << "5 - Afficher toutes les commandes d'un client grâce à son ID"<< ANSI_RESET << endl;
     cout<< ANSI_RED << "6 - Afficher toutes les commandes d'un client grâce à son nom et son prénom"<< ANSI_RESET << endl;
-    cout<< ANSI_CYAN << "7 - Retour au menu principal" << ANSI_RESET << endl;
+    cout<< ANSI_RED << "7 - Ajouter un produit au panier d'un client en fonction de son ID"<< ANSI_RESET << endl;
+    cout<< ANSI_RED << "8 - Supprimer un produit du panier " << ANSI_RESET << endl;
+    cout<< ANSI_RED << "9 - Voir le contenu du panier (PAS DISPONIBLE)" << ANSI_RESET << endl;
+    cout<< ANSI_RED << "10 - Modifier la quantité d'un produit dans le panier (PAS DISPONIBLE)" << ANSI_RESET << endl;
+    cout<< ANSI_CYAN << "11 - Retour au menu principal" << ANSI_RESET << endl;
     Box();
 }
 
@@ -134,12 +138,13 @@ void press_to_continue() {
 }
 //Initialisation de toute les valeurs de base du store
 void initialisation_store(Magasin* shop){
-    Produit* p3 = new Produit("Xbox One", "Console de jeu Microsoft", 15, 179.99);
-    Produit* p = new Produit("PS4", "Console de jeu Sony", 8, 249.99);
-    Produit* p4 = new Produit("PS5", "Console de jeu Sony", 14, 599.99);
-    Produit* p2 = new Produit("Switch", "Console de jeu Nintendo", 30, 299.99);
-    Produit* p5 = new Produit("3DS", "Console de jeu Nintendo", 20, 299.99);
-    Produit* p6 = new Produit("PC", "Ordinateur portable", 10, 799.90);
+    
+    Produit* p = new Produit("PS4", "Console de jeu Sony", 10, 249.99);
+    Produit* p2 = new Produit("Switch", "Console de jeu Nintendo", 15, 299.99);
+    Produit* p3 = new Produit("Xbox One", "Console de jeu Microsoft", 14, 179.99);
+    Produit* p4 = new Produit("PS5", "Console de jeu Sony", 12, 599.99);
+    Produit* p5 = new Produit("3DS", "Console de jeu Nintendo", 17, 299.99);
+    Produit* p6 = new Produit("PC", "Ordinateur portable", 16, 799.90);
 
     shop->addProduit(p);
     shop->addProduit(p2);
@@ -152,11 +157,13 @@ void initialisation_store(Magasin* shop){
     Client* client2 = new Client(shop->generateClientID(), "Krecina", "Baptiste", shop->getProduits());
     Client* client3 = new Client(shop->generateClientID(), "Paris", "Marion", shop->getProduits());
     Client* client4 = new Client(shop->generateClientID(), "Senechal", "Hugo", shop->getProduits());
+    Client* client5 = new Client(shop->generateClientID(), "Beratozz", "Val", shop->getProduits());
     
     shop->addClient(client);
     shop->addClient(client2);
     shop->addClient(client3);
     shop->addClient(client4);
+    shop->addClient(client5);
     
     Commande* co = new Commande(client, client->getPanier(), "En cours de traitement", shop->generateOrderID());
     Commande* co2 = new Commande(client2, client->getPanier(), "En cours de traitement", shop->generateOrderID());
@@ -399,7 +406,53 @@ int main(){
                                         displayMenuCommande();
                                         break;
                                     }
-                                    case 7: // Retour au menu principal
+                                  case 7 : // Ajout d'un produit au panier
+                                    {
+                                    	string titre;
+                                    	cout << "Nom du produit : ";
+                                    	cin.ignore();
+                                        getline(cin, titre);
+                                        cout << "ID du Client : ";
+                                        int idClient  = getInput();
+                                        system("clear");
+                                        easystore.addProductToBasket(idClient, titre);
+
+                                        press_to_continue();
+                                        displayMenuCommande();
+                                        break;      
+                                    
+									}
+
+                                     case 8 : // supprimer un article du panier 
+                                     {
+                                        string titre;
+                                        cout << "Nom du produit : ";
+                                        cin.ignore();
+                                        getline(cin, titre);
+                                        cout << "ID du Client : ";
+                                        int idClient  = getInput();
+                                        system("clear");
+                                        easystore.removeProductFromBasket(idClient, titre);
+
+                                        press_to_continue();
+                                        displayMenuCommande();
+                                        break;      
+                                    
+                                    }
+
+                                    /*case 9 : //Voir panier
+                                    {
+                                        cout << "ID du Client : ";
+                                        int idClient  = getInput();
+                                        system("clear");
+                                        easystore.displayBasket(idClient);
+
+                                        press_to_continue();
+                                        displayMenuCommande();
+                                        break; 
+                                    }*/
+
+                                    case 11: // Retour au menu principal
                                         displayMenu();
                                         quit3 = true;
                                         break;
