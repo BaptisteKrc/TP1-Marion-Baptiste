@@ -4,7 +4,7 @@
 #include "ConsoleTable.h"
 
 Magasin::Magasin() {}
-
+//Constructeur
 Magasin::Magasin(vector<Produit*> produits, vector<Client*> clients, vector<Commande*> commandes, int idC, int idO){
    this->m_clients = clients;
    this->m_produits = produits;
@@ -24,13 +24,15 @@ Magasin::~Magasin() {
         delete c;
     }
 }
-
+//Retourne les Produits
 vector<Produit*> Magasin::getProduits(){
     return m_produits;
 }
+//Retourne les clients 
 vector<Client* >Magasin::getClients(){
     return m_clients;
 }
+//Retourne les commandes
 vector<Commande*> Magasin::getCommandes(){
     return m_commandes;
 }
@@ -73,19 +75,20 @@ Commande* Magasin::getCommande(int id){
     }
     return res;
 }
-
+//Ajout de produit
 void Magasin::addProduit(Produit *p) {
     m_produits.push_back(p);
 }
-
+//Ajout de client
 void Magasin::addClient(Client* c) {
     m_clients.push_back(c);
 }
-
+//Ajout de commande
 void Magasin::addCommande(Commande* c) {
     m_commandes.push_back(c);
 }
-
+//Permet d'associer a chaque produit une description quantité, ect.
+//Dans l'affichage de tous les produits
 void Magasin::displayProducts() {
     ConsoleTable table{"Nom","Description", "Quantite", "Prix Unitaire"};
     table.addTopLine("Liste des produits du magasin");
@@ -104,7 +107,7 @@ void Magasin::displayProducts() {
     table.sort(true);
     cout << table;
 }
-
+//Mise a jour des quantités
 void Magasin::updateProductQuantity(Produit *p, int quantity) {
     for (int i = 0; i < m_produits.size(); ++i) {
         if (p == m_produits.at(i)){
@@ -112,7 +115,8 @@ void Magasin::updateProductQuantity(Produit *p, int quantity) {
         }
     }
 }
-
+//Permet d'associer a chaque produit une description quantité, ect.
+//Dans l'affichage d'un produit demander
 void Magasin::displayProduct(string name) {
     for (int i = 0; i < m_produits.size(); ++i) {
         if (m_produits.at(i)->getTitre() == name){
@@ -134,7 +138,8 @@ void Magasin::displayProduct(string name) {
         }
     }
 }
-
+//Permet d'associer a chaque client un nom, prenom, ect.
+//Dans l'affichage de tous les clients
 void Magasin::displayClients() {
     ConsoleTable table{"ID", "Prenom", "Nom"};
     table.addTopLine("Liste des clients");
@@ -149,6 +154,8 @@ void Magasin::displayClients() {
     cout << table;
 }
 
+//Permet d'associer a chaque client un nom, prenom, ect.
+//Dans l'affichage d'un client demander (Affichage d'un client grace a son id)
 void Magasin::displayClient(int id) {
     for (int i = 0; i < m_clients.size(); ++i) {
         if (m_clients.at(i)->getId() == id){
@@ -165,6 +172,8 @@ void Magasin::displayClient(int id) {
     }
 }
 
+//Permet d'associer a chaque client un nom, prenom, ect.
+//Dans l'affichage d'un client en fonction de son nom et prenom
 void Magasin::displayClient(string name, string surname) {
     for (int i = 0; i < m_clients.size(); ++i) {
         if (m_clients.at(i)->getPrenom() == name && m_clients.at(i)->getNom() == surname){
@@ -180,15 +189,15 @@ void Magasin::displayClient(string name, string surname) {
         }
     }
 }
-
+//Ajoute un produit au panier
 void Magasin::addProductToBasket(Client *c, Produit *p) {
     c->ajouterProduit(p);
 }
-
+//Enlever un produit du panier
 void Magasin::removeProductFromBasket(Client *c, Produit *p) {
     c->supprimerProduit(p);
 }
-
+//Valider un commande
 void Magasin::validerCommande(Commande* c) {
     setCommandeStatut(c, "Validee");
 }
@@ -200,7 +209,7 @@ void Magasin::setCommandeStatut(Commande* c, string statut) {
         }
     }
 }
-
+//Afficher une commande en fonction de l'id de la commande
 void Magasin::displayCommande(int id) {
     for (int i = 0; i < m_commandes.size(); ++i) {
         if (m_commandes.at(i)->getNumero() == id) {
@@ -208,13 +217,13 @@ void Magasin::displayCommande(int id) {
         }
     }
 }
-
+//Affichage de toute les commandes
 void Magasin::displayCommandes() {
     for (int i = 0; i < m_commandes.size(); ++i) {
         cout << *m_commandes.at(i) << endl;
     }
 }
-
+//Affichage des toutes les commandes validees
 void Magasin::displayCommandesValidees() {
     cout << "LISTE DES COMMANDES VALIDEES" << endl;
     for (int i = 0; i < m_commandes.size(); ++i) {
@@ -223,7 +232,7 @@ void Magasin::displayCommandesValidees() {
         }
     }
 }
-
+//Affichage de commande
 void Magasin::displayCommandesClient(Client* client) {
     for (int i = 0; i < m_commandes.size(); ++i) {
         if (m_commandes.at(i)->getClient() == client) {
@@ -231,7 +240,7 @@ void Magasin::displayCommandesClient(Client* client) {
         }
     }
 }
-
+//Affichage de commande en fonction de l'id du client
 void Magasin::displayCommandesClient(int id) {
     for (int i = 0; i < m_clients.size(); ++i) {
         if (m_clients.at(i)->getId() == id) {
@@ -240,7 +249,7 @@ void Magasin::displayCommandesClient(int id) {
         }
     }
 }
-
+//Affichage de commande en fonction du nom et prenom du client
 void Magasin::displayCommandesClient(string prenom, string nom) {
     for (int i = 0; i < m_clients.size(); ++i) {
         if (m_clients.at(i)->getNom() == nom && m_clients.at(i)->getPrenom() == prenom) {
@@ -249,12 +258,12 @@ void Magasin::displayCommandesClient(string prenom, string nom) {
         }
     }
 }
-
+//Donne un id a un client
 int Magasin::generateClientID() {
     m_startIDClient += 1;
     return m_startIDClient;
 }
-
+//Donne un id a une commande
 int Magasin::generateOrderID() {
     m_startIDOrder += 1;
     return m_startIDOrder;
