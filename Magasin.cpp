@@ -4,7 +4,7 @@
 #include "ConsoleTable.h"
 
 Magasin::Magasin() {}
-//Constructeur
+//Constructeur (Caractérisé par des clients, des commandes, ID, etc..)
 Magasin::Magasin(vector<Produit*> produits, vector<Client*> clients, vector<Commande*> commandes, int idC, int idO){
    this->m_clients = clients;
    this->m_produits = produits;
@@ -190,14 +190,40 @@ void Magasin::displayClient(string name, string surname) {
     }
 }
 //Ajoute un produit au panier
-void Magasin::addProductToBasket(Client *c, Produit *p) {
-    c->ajouterProduit(p);
+void Magasin::addProductToBasket(int idClient, string titre) {
+    for (std::vector<Client*>::iterator pit = m_clients.begin(); pit != m_clients.end(); ++pit) {
+        if ((*pit)->getId() == idClient) {
+            for (std::vector<Produit*>::iterator it = m_produits.begin(); it != m_produits.end(); ++it) {
+                if (titre == (*it)->getTitre()) {
+                    (*pit)->ajouterProduit(*it);
+                }
+            }      
+        }
+    }
 }
-//Enlever un produit du panier
-void Magasin::removeProductFromBasket(Client *c, Produit *p) {
-    c->supprimerProduit(p);
+//Supprime un produit (par son nom) du panier
+void Magasin::removeProductFromBasket(int idClient, string titre) {
+ for (std::vector<Client*>::iterator pit = m_clients.begin(); pit != m_clients.end(); ++pit) {
+        if ((*pit)->getId() == idClient) {
+            for (std::vector<Produit*>::iterator it = m_produits.begin(); it != m_produits.end(); ++it) {
+                if (titre == (*it)->getTitre()) {
+                    (*pit)->supprimerProduit(*it);
+                }
+            }      
+        }
+    }
 }
-//Valider un commande
+//Affiche le contenu du panier (ne fonctionne pas)
+void Magasin::displayBasket(int idClient) {
+    for (std::vector<Client*>::iterator pit = m_clients.begin(); pit != m_clients.end(); ++pit) {
+        if ((*pit)->getId() == idClient) {
+            for (std::vector<Produit*>::iterator it = (*pit)->getPanier().begin(); it != (*pit)->getPanier().end(); ++it) {
+                cout << (*it)->getTitre() << endl;   
+            }
+        }
+    }
+}
+//Valider une commande
 void Magasin::validerCommande(Commande* c) {
     setCommandeStatut(c, "Validee");
 }
@@ -232,7 +258,7 @@ void Magasin::displayCommandesValidees() {
         }
     }
 }
-//Affichage de commande
+//Affichage de commande en fonction du client
 void Magasin::displayCommandesClient(Client* client) {
     for (int i = 0; i < m_commandes.size(); ++i) {
         if (m_commandes.at(i)->getClient() == client) {
