@@ -18,28 +18,31 @@ Client::Client(int id, string nom, string prenom, vector<Produit*> panier){
 vector<Produit*> Client::getPanier(){
 	return m_panier;
 }
+//Retourne l'id du client
 int Client::getId(){
     return m_id;
 }
+//Retourne le nom du client
 string Client::getNom(){
 	return m_nom;
 }
+//Retourne le prénom du client
 string Client::getPrenom(){
 	return m_prenom;
 }
-
+//Ajoute un produit au panier
 void Client::ajouterProduit(Produit *p) {
     m_panier.push_back(p);
 }
-
+//VIde le panier
 void Client::viderPanier() {
     m_panier.clear();
 }
-
+//Modifie la quantite d'un produit
 void Client::augmenterQuantite(Produit *p, int quantite) {
     p->modifierQuantite(quantite);
 }
-
+//Supprime un produit
 void Client::supprimerProduit(Produit* p) {
     for (int i = 0; i < m_panier.size(); ++i) {
         if (p == m_panier.at(i)){
@@ -48,6 +51,7 @@ void Client::supprimerProduit(Produit* p) {
     }
 }
 
+//Surcharge de l'opérateur "<<" pour le client
 ostream&operator<< (ostream&output, Client client){
     ConsoleTable table{"Nom","Description", "Quantite", "Prix Unitaire"};
     table.addTopLine("Client #"+ to_string(client.getId()) + " : "+ client.getPrenom() + " " + client.getNom());
