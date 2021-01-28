@@ -1,9 +1,10 @@
+//Définition des couleurs du menu du magasin
 #define ANSI_GREEN "\033[0;92m"
 #define ANSI_RED   "\033[0;91m"
 #define ANSI_RESET "\033[0;0m"
 #define ANSI_CYAN "\033[0;36m"
 #define ANSI_YELL "\u001b[33m"
-
+//On définit un délais qui sera utilisé à la suite d'une modification dans le magasin
 #define SLEEP_DELAY 2
 
 #include <iostream>
@@ -119,7 +120,7 @@ void displayMenuMagasin() {
     cout << ANSI_CYAN << "5 - Retour au menu principal" << ANSI_RESET << endl;
     Box();
 }
-
+//Permet de récupérer les choix de l'utilisateur 
 int getInput(){
     int choix;
     cin >> choix;
@@ -138,38 +139,38 @@ void press_to_continue() {
 }
 //Initialisation de toute les valeurs de base du store
 void initialisation_store(Magasin* shop){
-    
+    //6 produits
     Produit* p = new Produit("PS4", "Console de jeu Sony", 10, 249.99);
     Produit* p2 = new Produit("Switch", "Console de jeu Nintendo", 15, 299.99);
     Produit* p3 = new Produit("Xbox One", "Console de jeu Microsoft", 14, 179.99);
     Produit* p4 = new Produit("PS5", "Console de jeu Sony", 12, 599.99);
     Produit* p5 = new Produit("3DS", "Console de jeu Nintendo", 17, 299.99);
     Produit* p6 = new Produit("PC", "Ordinateur portable", 16, 799.90);
-
+    //On ajoute ces produits au magasin
     shop->addProduit(p);
     shop->addProduit(p2);
     shop->addProduit(p3);
     shop->addProduit(p4);
     shop->addProduit(p5);
     shop->addProduit(p6);
-
+    //Création de 5 clients 
     Client* client = new Client(shop->generateClientID(), "Ginhac", "Dominique", shop->getProduits());
     Client* client2 = new Client(shop->generateClientID(), "Krecina", "Baptiste", shop->getProduits());
     Client* client3 = new Client(shop->generateClientID(), "Paris", "Marion", shop->getProduits());
     Client* client4 = new Client(shop->generateClientID(), "Senechal", "Hugo", shop->getProduits());
     Client* client5 = new Client(shop->generateClientID(), "Beratozz", "Val", shop->getProduits());
-    
+    //Ajout des clients au magasin
     shop->addClient(client);
     shop->addClient(client2);
     shop->addClient(client3);
     shop->addClient(client4);
     shop->addClient(client5);
-    
+    //Création de commande 
     Commande* co = new Commande(client, client->getPanier(), "En cours de traitement", shop->generateOrderID());
     Commande* co2 = new Commande(client2, client->getPanier(), "En cours de traitement", shop->generateOrderID());
     Commande* co3 = new Commande(client3, client->getPanier(), "En cours de traitement", shop->generateOrderID());
     Commande* co4 = new Commande(client4, client->getPanier(), "En cours de traitement", shop->generateOrderID());
-
+    //Ajout de commande au magasin
     shop->addCommande(co);
     shop->addCommande(co2);
     shop->addCommande(co3);
@@ -178,21 +179,21 @@ void initialisation_store(Magasin* shop){
 
 
 int main(){
-    
+    //Initialisation des valeurs
     int choix = 0, choix2 = 0, choix3 = 0;
     bool quit = false, quit2 = false, quit3 = false;
 
     vector<Produit*> produits;
     vector<Client*> clients;
     vector<Commande*> commandes;
-
+    //Initialisation des valeurs
     int startIDClient = 0; int startIDOrder = 0;
 
     Magasin easystore(produits, clients, commandes, startIDClient, startIDOrder);
 
     initialisation_store(&easystore);
 
-    
+    //Chemin pour parcourir le magasin dans les différents menu 
     while(!quit) {
         displayAccueil();
         choix = getInput();
@@ -476,7 +477,7 @@ int main(){
                 break;
             default:
                 displayAccueil();
-                break;
+                break; //Fin du chemin 
         }
     }
     system("clear");
