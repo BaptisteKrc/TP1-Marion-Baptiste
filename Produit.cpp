@@ -28,7 +28,7 @@ double Produit::getPrixUnitaire()  {
 void Produit::modifierQuantite(int quantite){
     this->m_quantite = quantite;
 }
-
+//convertit en string tous les paramètres de Produit pour pouvoir lafficher 
 string Produit::toString() {
     return  m_titre + "\t\t" + m_description + "\t\t(" + to_string(m_quantite) +")\t\t" + to_string(m_prix_unitaire) + " â‚¬";
 }
