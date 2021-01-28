@@ -127,12 +127,12 @@ int getInput(){
     }
     return choix;
 }
-
+//Fonction "press to continue"
 void press_to_continue() {
     cout << ANSI_CYAN<< "Appuyer sur ENTREE pour continuer ..." << ANSI_RESET << endl;
     system("read var");
 }
-
+//Initialisation de toute les valeurs de base du store
 void initialisation_store(Magasin* shop){
     Produit* p3 = new Produit("Xbox One", "Console de jeu Microsoft", 15, 179.99);
     Produit* p = new Produit("PS4", "Console de jeu Sony", 8, 249.99);
@@ -409,7 +409,7 @@ int main(){
                                 }
                             }
                             break;
-                        case 4 : // Retour Ã  l'accueil
+                        case 4 : // Retour à  l'accueil
                             quit2 = true;
                             break;
                         default:
