@@ -48,8 +48,9 @@ class Magasin {
         void displayClient(int id);
         void displayClient(string name, string surname);
 
-        void addProductToBasket(Client* c, Produit* p);
-        void removeProductFromBasket(Client* c, Produit* p);
+        void addProductToBasket(int idClient, string titre);
+        void removeProductFromBasket(int idClient, string titre);
+        void displayBasket(int idClient);
 
         void validerCommande(Commande* c);
         void setCommandeStatut(Commande* c, string statut);
@@ -65,6 +66,5 @@ class Magasin {
         int generateClientID();
         int generateOrderID();
 };
-
 
 #endif 
