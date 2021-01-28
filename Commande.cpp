@@ -25,7 +25,7 @@ void Commande::setProduits(vector<Produit*> produits){
 	this->m_produits = produits;
 }
 
-//Setter statue (de la commande)
+//Setter statut (de la commande)
 void Commande::setStatut(string statut){
 	this->m_statut = statut;
 }
@@ -55,7 +55,7 @@ double Commande::getPrixTotal() {
     double prixInt=0;
     for (int i = 1; i < m_produits.size(); ++i) {
         prixInt = m_produits.at(i)->getPrixUnitaire() * m_produits.at(i)->getQuantite();
-		prixTotal = prixTotal+prixInt;
+	prixTotal = prixTotal+prixInt;
     }
     return prixTotal;
 }
@@ -87,5 +87,5 @@ ostream&operator<< (ostream&output,Commande commande){
     table.addBottomLine("TOTAL : EU "+ prix);
 
     output << table;
-	return output;
+    return output;
 }
